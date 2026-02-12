@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,7 +60,7 @@
 
     @keyframes pop {
         0% { transform: scale(0); opacity: 0; }
-        50% { transform: scale(1.2); opacity: 1; }
+        50% { transform: scale(1.3); opacity: 1; }
         100% { transform: scale(1); opacity: 1; }
     }
 </style>
@@ -70,7 +70,7 @@
 <h1 id="question">Would you be my Valentine? 💌</h1>
 
 <div class="buttons">
-    <button id="yesBtn">Yes</button>
+    <button id="yesBtn">Sì</button>
     <button id="noBtn">No</button>
 </div>
 
@@ -78,25 +78,11 @@
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
     const question = document.getElementById("question");
-
-    let noClicks = 0;
-
-    noBtn.addEventListener("click", () => {
-        noClicks++;
-
-        if (noClicks === 1) {
-            question.textContent = "Are you sure? 🥺";
-        } else if (noClicks === 2) {
-            noBtn.textContent = "Yes";
-            question.textContent = "Nice try 😌";
-        } else {
-            noBtn.textContent = "Yes";
-        }
-    });
+    const buttonsDiv = document.querySelector(".buttons");
 
     function showHeart() {
-        question.textContent = "Yaaay! ❤️";
-        document.querySelector(".buttons").style.display = "none";
+        question.textContent = "Namo! ❤️";
+        buttonsDiv.style.display = "none";
 
         const heart = document.createElement("div");
         heart.classList.add("heart");
@@ -105,12 +91,21 @@
     }
 
     yesBtn.addEventListener("click", showHeart);
+
     noBtn.addEventListener("click", () => {
-        if (noBtn.textContent === "Yes") {
-            showHeart();
-        }
+        // Cambia domanda
+        question.textContent = "Ritenta 😌";
+
+        // Trasforma entrambi i bottoni in "Sì"
+        yesBtn.textContent = "Sì";
+        noBtn.textContent = "Sì";
+
+        // Entrambi portano al cuore
+        yesBtn.onclick = showHeart;
+        noBtn.onclick = showHeart;
     });
 </script>
 
 </body>
 </html>
+
